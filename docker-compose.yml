@@ -21,8 +21,8 @@ services:
     ports:
       - 80:80
     volumes:
-      - static_volume:/store/staticfiles/
-      - media_volume:/store/mediafiles/
+      - static_volume:/staticfiles/
+      - media_volume:/mediafiles/
 volumes:
   static_volume:
   media_volume:
