@@ -10,7 +10,7 @@ services:
     expose:
       - 80
     environment:
-      SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+      SECRET_KEY: "${{ secrets.DJANGO_SECRET_KEY }}"
       DEBUG: "False"
   nginx:
     container_name: "nginx"
