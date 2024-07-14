@@ -12,7 +12,7 @@ services:
     ports:
       - "8000:8000"
     environment:
-      SECRET_KEY: "django-insecure-j2#*0xj=vjaebcr_3h6e&ug@bgj)nahr&icw!s2##@2g$94e21"
+      SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
       DEBUG: "False"
   nginx:
     build:
