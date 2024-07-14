@@ -1,0 +1,25 @@
+version: '3'
+services:
+  bookapi:
+    container_name: 'django-api'
+    image: '${DJANGO_TUTORIAL_API_IMAGE}'
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - static_volume:/staticfiles/
+      - media_volume:/mediafiles/
+    expose:
+      - 80
+    environment:
+      SECRET_KEY: "django-insecure-j2#*0xj=vjaebcr_3h6e&ug@bgj)nahr&icw!s2##@2g$94e21"
+      DEBUG: "False"
+  nginx:
+      container_name: 'nginx'
+      image: '${DJANGO_TUTORIAL_NGINX_IMAGE}'
+      ports:
+        - 80:80
+      volumes:
+        - static_volume:/staticfiles/
+        - media_volume:/mediafiles/
+ volumes:
+    static_volume:
+    media_volume:
