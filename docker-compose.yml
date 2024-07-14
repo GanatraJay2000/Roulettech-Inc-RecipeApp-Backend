@@ -5,9 +5,10 @@ services:
       context: ./
       dockerfile: Dockerfile
     command: >
-      sh -c "python manage.py makemigrations &&
+      sh -c "sudo kill $(ps aux | grep gunicorn | grep -v grep | awk '{print $2}')
+            python manage.py makemigrations &&
              python manage.py migrate &&
-             gunicorn config.wsgi:application --bind 0.0.0.0:8000"
+             gunicorn config.wsgi:application --bind 0.0.0.0:8000 --daemon"
 
     ports:
       - "8000:8000"
