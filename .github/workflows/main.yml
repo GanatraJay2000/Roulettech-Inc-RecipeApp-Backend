@@ -21,6 +21,7 @@ jobs:
         run: |
           echo "DJANGO_TUTORIAL_API_IMAGE=$(echo ${{env.DJANGO_TUTORIAL_API_IMAGE}} )" >> $GITHUB_ENV
           echo "DJANGO_TUTORIAL_NGINX_IMAGE=$(echo ${{env.DJANGO_TUTORIAL_NGINX_IMAGE}} )" >> $GITHUB_ENV
+          echo "DJANGO_SECRET_KEY=$(echo ${{secrets.DJANGO_SECRET_KEY}} )" >> $GITHUB_ENV
       - name: Log in to GitHub Packages
         env:
           PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
