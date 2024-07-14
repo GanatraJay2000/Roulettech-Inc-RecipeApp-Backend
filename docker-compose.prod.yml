@@ -10,7 +10,7 @@ services:
     expose:
       - 80
     environment:
-      SECRET_KEY: "${{ secrets.DJANGO_SECRET_KEY }}"
+      SECRET_KEY: "django-insecure-j2#*0xj=vjaebcr_3h6e&ug@bgj)nahr&icw!s2##@2g$$94e21"
       DEBUG: "False"
   nginx:
     container_name: "nginx"
