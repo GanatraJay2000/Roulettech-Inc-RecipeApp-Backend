@@ -84,6 +84,7 @@ jobs:
 
         run: |
           echo "RUNNING DEPLOYMENT"
+          echo "${{secrets.AWS_HOST_USER}}@${{ secrets.AWS_EC2_IP_ADDRESS }}"
           scp -o StrictHostKeyChecking=no -r ./.env ./docker-compose.prod.yml ${{secrets.AWS_HOST_USER}}@${{ secrets.AWS_EC2_IP_ADDRESS }}:
           echo "${{secrets.AWS_HOST_USER}}@${{ secrets.AWS_EC2_IP_ADDRESS }}"
           ssh -o StrictHostKeyChecking=no ${{secrets.AWS_HOST_USER}}@${{ secrets.AWS_EC2_IP_ADDRESS }} << EOF
