@@ -1,16 +1,19 @@
-FROM ubuntu
+# Pull the image from Dockerhub
+FROM python:alpine3.19
 
-RUN mkdir /app
-WORKDIR /app
+WORKDIR /
+# set up python environment variables
 
-RUN apt update && \
-    apt upgrade -y
-    
-RUN apt install git python3 python3-pip -y
+ENV PYTHONDOWNWRITEBYTECODE 1
+ENV PYTHONNUNBUFFER 1
 
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
-
+# update and  install dependencies
+RUN pip install --upgrade pip
 COPY . .
+# COPY ./requirements.txt /api/requirements.txt
+RUN pip install -r requirements.txt
 
-CMD ./scripts/start.sh 
+# copy project
+
+# Expose the port server is running on
+EXPOSE 8000
