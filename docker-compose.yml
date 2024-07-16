@@ -12,6 +12,7 @@ services:
     volumes:
       - static_volume:/static/
       - media_volume:/media/
+      - data:/data/
     expose:
       - 80
   nginx:
@@ -23,6 +24,8 @@ services:
     volumes:
       - static_volume:/static/
       - media_volume:/media/
+      - data:/data/
 volumes:
   static_volume:
   media_volume:
+  data:

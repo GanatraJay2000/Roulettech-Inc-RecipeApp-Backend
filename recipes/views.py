@@ -81,9 +81,11 @@ class RecipeDetailView(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
         data = {
-            'task': request.data.get('task'), 
-            'completed': request.data.get('completed'), 
-            'user': request.user.id
+            'title': request.data.get('title'),
+            'ingredients': request.data.get('ingredients'),
+            'time_required': request.data.get('time_required'),
+            'instructions': request.data.get('instructions'),
+            'user': request.user.id 
         }
         serializer = RecipeSerializer(instance = recipe_instance, data=data, partial = True)
         if serializer.is_valid():
