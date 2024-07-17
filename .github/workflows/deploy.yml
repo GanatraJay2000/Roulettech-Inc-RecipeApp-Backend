@@ -87,8 +87,8 @@ jobs:
               docker-compose down --rmi all
               docker login ghcr.io -u ${{secrets.NAMESPACE}} -p ${{secrets.PERSONAL_ACCESS_TOKEN}}
               echo "-------------------Images Pull"
-              docker pull $DJANGO_TUTORIAL_API_IMAGE
-              docker pull $DJANGO_TUTORIAL_NGINX_IMAGE
+              docker pull ${{ env.DJANGO_TUTORIAL_API_IMAGE }}
+              docker pull ${{ env.DJANGO_TUTORIAL_NGINX_IMAGE }}
               echo "-------------------Compose up"
               docker-compose --env-file=.env -f docker-compose.prod.yml up -d --build --no-cache
               docker logout
