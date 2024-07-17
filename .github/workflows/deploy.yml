@@ -32,7 +32,7 @@ jobs:
       - name: Build images
         id: build-images
         run: |
-          docker-compose -f docker-compose.ci.yml build --no-cache
+          docker-compose -f docker-compose.ci.yml build
       - name: Push images
         run: |
           docker push ${{ env.DJANGO_TUTORIAL_API_IMAGE }}
@@ -90,6 +90,6 @@ jobs:
               docker pull ${{ env.DJANGO_TUTORIAL_API_IMAGE }}
               docker pull ${{ env.DJANGO_TUTORIAL_NGINX_IMAGE }}
               echo "-------------------Compose up"
-              docker-compose --env-file=.env -f docker-compose.prod.yml up -d --build --no-cache
+              docker-compose --env-file=.env -f docker-compose.prod.yml up -d --build
               docker logout
           EOF
