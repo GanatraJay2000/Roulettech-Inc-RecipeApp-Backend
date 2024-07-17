@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: checkout main
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Set environment variables to .env
         run: |
@@ -83,13 +83,10 @@ jobs:
         run: |
           scp -o StrictHostKeyChecking=no -r ./.env ./docker-compose.prod.yml ${{secrets.AWS_HOST_USER}}@${{ secrets.AWS_EC2_IP_ADDRESS }}:
           ssh -o StrictHostKeyChecking=no ${{secrets.AWS_HOST_USER}}@${{ secrets.AWS_EC2_IP_ADDRESS }} << EOF
-              echo "-------------------Compose down"
               docker-compose down --rmi all
               docker login ghcr.io -u ${{secrets.NAMESPACE}} -p ${{secrets.PERSONAL_ACCESS_TOKEN}}
-              echo "-------------------Images Pull"
-              docker pull ${{ env.DJANGO_TUTORIAL_API_IMAGE }}
-              docker pull ${{ env.DJANGO_TUTORIAL_NGINX_IMAGE }}
-              echo "-------------------Compose up"
+              docker pull $DJANGO_TUTORIAL_API_IMAGE
+              docker pull $DJANGO_TUTORIAL_NGINX_IMAGE
               docker-compose --env-file=.env -f docker-compose.prod.yml up -d --build
               docker logout
           EOF
