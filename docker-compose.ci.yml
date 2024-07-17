@@ -2,8 +2,6 @@ version: "3"
 services:
   api:
     build: "."
-    args:
-      - CACHEBUST=${BUILD_DATE}
     image: "${DJANGO_TUTORIAL_API_IMAGE}"
     command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
     expose:
