@@ -80,6 +80,8 @@ class RecipeDetailView(APIView):
                 {"res": "Object with recipe id does not exists"}, 
                 status=status.HTTP_400_BAD_REQUEST
             )
+        print("----------------------------------------")
+        print(request.data)
         data = {
             'title': request.data.get('title'),
             'ingredients': request.data.get('ingredients'),
